@@ -1,4 +1,5 @@
 import os
+from turtle import*
 import playsound
 import speech_recognition 
 import time
@@ -85,7 +86,7 @@ while True:
 		8. Nói một câu nói vui cho bạn
 		9. Tắt màn hình khi không dùng nữa """
 		print("AI:" + AI)
-		time.sleep(20)
+		time.sleep(10)
 	elif "word" in you:
 		AI = "Ok! I'm opening "
 		print("AI:" + AI)
@@ -180,9 +181,6 @@ while True:
 	elif 'sleep 5 second' in you:
 		AI='Finish'
 		time.sleep(5)
-		AI_mouth = pyttsx3.init()
-		AI_mouth.say(AI)
-		AI_mouth.runAndWait()
 	elif 'shut down' in you:
 		os.system('shutdown -s')
 	elif 'restart' in you:
@@ -243,7 +241,6 @@ while True:
 			AI_mouth = pyttsx3.init()
 			AI_mouth.say(AI)
 			AI_mouth.runAndWait()
-			time.sleep(3)
 			ow_url = "http://api.openweathermap.org/data/2.5/weather?"
 			city = input()
 			if not city:
@@ -257,7 +254,6 @@ while True:
 				current_temperature = city_res["temp"]
 				current_pressure = city_res["pressure"]
 				current_humidity = city_res["humidity"]
-				suntime = data["sys"]
 				wthr = data["weather"]
 				weather_description = wthr[0]["description"]
 				now = date.today()
@@ -266,7 +262,7 @@ while True:
 				Nhiệt độ trung bình là {temp} độ C
 				Áp suất không khí là {pressure}Pa
 				Độ ẩm là {humidity}%
-				""".format(day = now.day,month = now.month, year= now.year,	                                                                           	   
+				""".format(day = now.day,month = now.month, year= now.year, 	                                                                           	   
 	                       temp = current_temperature, pressure = current_pressure, humidity = current_humidity)
 				print(content)
 			else:
@@ -308,6 +304,17 @@ while True:
 		AI = wiki
 		time.sleep(3)	
 		break	
+	elif "virus" in you:
+		while True:
+			speed(11)
+			color('green')
+			bgcolor('black')
+			b = 0
+			while b < 200:
+				left(b)
+				forward(b*3)
+				b += 1
+			done()
 	elif "tell me" in you:
 		with open('joke.txt', 'r') as file:
 			jokelist = file.read().split("\n*")
