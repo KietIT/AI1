@@ -1,5 +1,4 @@
 import os
-from turtle import*
 import playsound
 import speech_recognition 
 import time
@@ -29,7 +28,6 @@ import random
 AI_ear = speech_recognition.Recognizer()
 AI_mouth = pyttsx3.init()
 language = 'vi'
-
 
 while True:
 	with speech_recognition.Microphone() as mic:
@@ -75,17 +73,20 @@ while True:
 				AI_mouth.runAndWait()	
 				break	
 	elif "introduce yourself" in you:
-		AI = """Tôi có thể làm các việc sau đây:
-		1. Chào hỏi
-		2. Cho biết ngày, giờ hiện tại
-		3. Mở excel, word, powerpoint
-		4. Mở các website như Google, Youtube, Gmail,...
-		5. Xem thời tiết hiện tại của bất cứ thành phố nào
-		6. Nhắc nhở bạn các công việc cần làm
-		7. Tìm kiếm một thông tin bất kì từ Wikipedia
-		8. Nói một câu nói vui cho bạn
-		9. Tắt màn hình khi không dùng nữa """
+		AI = """I can do the following task such as:
+		1. Greeting
+		2. Show date and time
+		3. Open excel, word, powerpoint
+		4. Open website like Google, Youtube, Gmail,...
+		5. See the weather of any city
+		6. Remind you of the things to do
+		7. Search for any information from wikipedia
+		8. Say a funny sentence
+		9. Turn off the screen when not in use """
 		print("AI:" + AI)
+		AI_mouth = pyttsx3.init()
+		AI_mouth.say(AI)
+		AI_mouth.runAndWait()
 		time.sleep(10)
 	elif "word" in you:
 		AI = "Ok! I'm opening "
@@ -94,21 +95,21 @@ while True:
 		AI_mouth.say(AI)
 		AI_mouth.runAndWait()
 		time.sleep(1)
-		os.startfile('C:\\Program Files (x86)\\Microsoft Office\\Office16\\WINWORD.EXE')
+		os.startfile('C:\Program Files (x86)\Microsoft Office\Office16\WINWORD.EXE')
 	elif "Microsoft" in you:
 		AI = "Ok! I'm opening "
 		print("AI:" + AI)
 		AI_mouth = pyttsx3.init()
 		AI_mouth.say(AI)
 		AI_mouth.runAndWait()
-		os.startfile("C:\\Program Files (x86)\\Microsoft Office\\Office16\\EXCEL.EXE") 
+		os.startfile("C:\Program Files (x86)\Microsoft Office\Office16\EXCEL.EXE") 
 	elif "open" in you:
 		AI = "Ok! I'm opening "
 		print("AI:" + AI)
 		AI_mouth = pyttsx3.init()
 		AI_mouth.say(AI)
 		AI_mouth.runAndWait()
-		os.startfile('C:\\Program Files (x86)\\Microsoft Office\\Office16\\POWERPNT.EXE')
+		os.startfile('C:\Program Files (x86)\Microsoft Office\Office16\POWERPNT.EXE')
 	elif "team" in you:
 		AI = "Ok! I'm opening "
 		print("AI:" + AI)
@@ -199,20 +200,6 @@ while True:
 		AI_mouth = pyttsx3.init()
 		AI_mouth.say(AI)
 		AI_mouth.runAndWait()
-	elif "music" in you:
-		webbrowser.open('https://www.youtube.com/results?search_query=music',new=2)
-		AI="Ok!Bye"
-		print("AI:" + AI)
-		AI_mouth = pyttsx3.init()
-		AI_mouth.say(AI)
-		AI_mouth.runAndWait()
-	elif "remix" in you:
-		webbrowser.open('https://www.youtube.com/results?search_query=nh%E1%BA%A1c+remix',new=2)
-		AI="Ok!Bye"	
-		print("AI:" + AI)
-		AI_mouth = pyttsx3.init()
-		AI_mouth.say(AI)
-		AI_mouth.runAndWait()
 	elif "Apple" in you:
 		webbrowser.open('https://www.apple.com/',new=2)
 		AI="Ok!Bye"	
@@ -286,7 +273,6 @@ while True:
 				os.system("start iphone.mp3")
 				break
 	elif "Wikipedia" in you:
-		AI_ear = speech_recognition.Recognizer()
 		with speech_recognition.Microphone() as mic:
 			print("Wikipedia: ...")
 			audio = AI_ear.listen(mic)
@@ -299,22 +285,11 @@ while True:
 			AI_mouth.say(AI)
 			AI_mouth.runAndWait()
 		wikipedia.set_lang("vi")
-		wiki=wikipedia.summary(wiki)
+		wiki = wikipedia.summary(wiki)
 		print(wiki)
 		AI = wiki
 		time.sleep(3)	
 		break	
-	elif "virus" in you:
-		while True:
-			speed(11)
-			color('green')
-			bgcolor('black')
-			b = 0
-			while b < 200:
-				left(b)
-				forward(b*3)
-				b += 1
-			done()
 	elif "tell me" in you:
 		with open('joke.txt', 'r') as file:
 			jokelist = file.read().split("\n*")
@@ -325,6 +300,18 @@ while True:
 		AI_mouth.say(AI)
 		AI_mouth.runAndWait()	
 		break
+	elif "what should i do":
+		AI = """
+		6 am: Do exercise
+		6:30 am: Have breakfast
+		7:00 am: Learn math
+		8 am: Learn physics 
+		9 am: Clean the room
+		10:00 am: Have lunch"""
+		print("AI:" + AI)
+		AI_mouth = pyttsx3.init()
+		AI_mouth.say(AI)
+		AI_mouth.runAndWait()
 	break
 
 	
